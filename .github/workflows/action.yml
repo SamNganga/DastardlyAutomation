@@ -11,17 +11,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Run Dastardly Action Step
+        continue-on-error: true
+        uses: PortSwigger/dastardly-github-action@main
+        with:
+          target-url: 'https://ginandjuice.shop'  # Replace this with your application URL
 
-    - name: Run Dastardly
-      uses: PortSwigger/dastardly-github-action@v1
-      with:
-        target-url: 'https://ginandjuice.shop'  # Replace this with your target URL
-
-    - name: Upload Dastardly Report
-      if: always()
-      uses: actions/upload-artifact@v3
-      with:
-        name: dastardly-report
-        path: dastardly-report.html
+      - name: Publish Test Report
+        if: always()
+        uses: mikepenz/action-junit-report@v3
+        with:
+          report_paths: '**/dastardly-report.xml'
+          require_tests: true
