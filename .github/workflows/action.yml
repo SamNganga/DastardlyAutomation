@@ -1,0 +1,27 @@
+name: Dastardly CI Scan
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  dastardly_scan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Run Dastardly
+      uses: PortSwigger/dastardly-github-action@v1
+      with:
+        target-url: 'https://ginandjuice.shop'  # Replace this with your target URL
+
+    - name: Upload Dastardly Report
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: dastardly-report
+        path: dastardly-report.html
