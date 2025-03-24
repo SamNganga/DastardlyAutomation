@@ -5,6 +5,8 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  schedule:
+    - cron: '*/5 * * * *'  
 
 jobs:
   dastardly_scan:
@@ -15,7 +17,7 @@ jobs:
         continue-on-error: true
         uses: PortSwigger/dastardly-github-action@main
         with:
-          target-url: 'https://customer.uat.irembopay.com/'  # Replace this with your application URL
+          target-url: 'https://customer.uat.irembopay.com/' 
 
       - name: Publish Test Report
         if: always()
@@ -23,3 +25,4 @@ jobs:
         with:
           report_paths: '**/dastardly-report.xml'
           require_tests: true
+
