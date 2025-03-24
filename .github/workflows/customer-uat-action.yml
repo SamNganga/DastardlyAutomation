@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Wait for 5 minutes (Optional)
+        run: sleep 300  # Delay to allow target to stabilize
       - name: Run Dastardly Action Step
         continue-on-error: true
         uses: PortSwigger/dastardly-github-action@main

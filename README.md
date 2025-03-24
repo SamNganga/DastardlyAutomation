@@ -73,7 +73,7 @@ jobs:
 - The workflow will automatically run on:
   - Pushes to the `main` branch.
   - Pull requests to the `main` branch.
-  - Every Friday at 11 PM UTC.
+  - Every Friday at 11 PM.
 - You can also trigger the workflow manually from the **GitHub Actions tab**.
 
 ## 📈 Viewing Reports
